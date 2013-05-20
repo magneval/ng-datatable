@@ -33,8 +33,6 @@ angular.module('components', [])
                 '</td>' +
                 '</tr>' +
                 '</table>'
-//                ,
-//      replace: true
     };
 })
         ;
