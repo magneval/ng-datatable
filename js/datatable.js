@@ -29,7 +29,7 @@ angular.module('components', [])
                 '<table border="1">' +
                 '<tr >' +
                 '<td >' +
-                '{{data}}' +
+                'hello' +
                 '</td>' +
                 '</tr>' +
                 '</table>'
