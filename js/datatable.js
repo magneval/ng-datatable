@@ -21,18 +21,34 @@ angular.module('components', [])
         "c": '#'
     }
 ])
-        .directive('datatable', function() {
-    return {
-        restrict: 'E',
-        transclude: true,
-        template:
-                '<table border="1">' +
-                '<tr >' +
-                '<td >' +
-                'hello' +
-                '</td>' +
-                '</tr>' +
-                '</table>'
-    };
-})
+        .directive('datatable', ['datas', function(datas) {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {},
+            controller: function($scope, $element, datas) {
+                var objects = $scope.objects = datas;
+                var columns = $scope.columns = [];
+                for (var c in datas[0]) {
+                    columns.push(c);
+                }
+            },
+            template:
+                    '<table border="1" >' +
+                    '    <thead>' +
+                    '        <tr>' +
+                    '            <th ng-repeat="column in columns">{{column}}</th>' +
+                    '        </tr>' +
+                    '    </thead>' +
+                    '    <tbody>' +
+                    '       <tr ng-repeat="line in objects" >' +
+                    '           <td ng-repeat="column in columns">' +
+                    '{{line[column]}}' +
+                    '           </td>' +
+                    '       </tr>' +
+                    '    </tbody>' +
+                    '</table>'
+        }
+        ;
+    }])
         ;
