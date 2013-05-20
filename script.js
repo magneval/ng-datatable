@@ -3,7 +3,7 @@ angular.module('components', []).
     return {
       restrict: 'E',
 controller: function($scope, $element) {
-}
+},
       template:
         '<div>' +
           'Hello' +
@@ -11,5 +11,3 @@ controller: function($scope, $element) {
       replace: true
     };
   })
-}
-}
