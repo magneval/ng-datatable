@@ -41,6 +41,9 @@ angular.module('components', [])
                 $scope.edit = function(line) {
                     alert(line);
                 }
+                $scope.export = function() {
+                    alert(datas);
+                }
                 $scope.getClass = function(column) {
                     return $scope.sortClass[column];
                 }
@@ -68,6 +71,7 @@ angular.module('components', [])
                     '    <thead>' +
                     '        <tr>' +
                     '            <th id="column{{column}}" ng-class="getClass(column)" ng-repeat="column in columns"  ng-click="sort(this)">{{column}}</th>' +
+                    '            <th  ng-click="export()">export</th>' +
                     '        </tr>' +
                     '    </thead>' +
                     '    <tbody>' +
