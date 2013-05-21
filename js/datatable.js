@@ -36,6 +36,11 @@ angular.module('components', [])
                     columns.push(c);
                     $scope.sortClass[c] = "nosort";
                 }
+                $scope.delete = function(line, $index, $event) {
+                }
+                $scope.edit = function(line) {
+                    alert(line);
+                }
                 $scope.getClass = function(column) {
                     return $scope.sortClass[column];
                 }
