@@ -29,15 +29,40 @@ angular.module('components', [])
             controller: function($scope, $element, datas) {
                 var objects = $scope.objects = datas;
                 var columns = $scope.columns = [];
+                var sortColumn;
+                var sortClass = $scope.sortClass = [];
+                var reversed = false;
                 for (var c in datas[0]) {
                     columns.push(c);
+                    $scope.sortClass[c] = "nosort";
                 }
+                $scope.getClass = function(column) {
+                    return $scope.sortClass[column];
+                }
+                $scope.sort = function(column) {
+                    if (sortColumn === column) {
+                        reversed = !reversed;
+                    } else {
+                        reversed = false;
+                        if (sortColumn) {
+                            c = sortColumn.column;
+                            $scope.sortClass[c] = "nosort";
+                        }
+                        sortColumn = column;
+                    }
+                    c = sortColumn.column;
+                    if (reversed) {
+                        $scope.sortClass[c] = "sort";
+                    } else {
+                        $scope.sortClass[c] = "reversesort";
+
+                    }
             },
             template:
                     '<table border="1" >' +
                     '    <thead>' +
                     '        <tr>' +
-                    '            <th ng-repeat="column in columns">{{column}}</th>' +
+                    '            <th id="column{{column}}" ng-class="getClass(column)" ng-repeat="column in columns"  ng-click="sort(this)">{{column}}</th>' +
                     '        </tr>' +
                     '    </thead>' +
                     '    <tbody>' +
