@@ -66,9 +66,11 @@ angular.module('components', [])
                     '        </tr>' +
                     '    </thead>' +
                     '    <tbody>' +
-                    '       <tr ng-repeat="line in objects" >' +
-                    '           <td ng-repeat="column in columns">' +
+                    '           <td ng-repeat="column in columns" ng-click="edit(line)">' +
                     '{{line[column]}}' +
+                    '           </td>' +
+                    '           <td>' +
+                    '<button class="btn btn-danger" ng-click="delete(line, $index, $event)">Delete</button>' +
                     '           </td>' +
                     '       </tr>' +
                     '    </tbody>' +
