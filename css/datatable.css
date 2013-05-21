@@ -1,0 +1,20 @@
+
+.nosort {
+    background-image: url("../img/icon_nosort.png");
+}
+
+.sort {
+    background-image: url("../img/icon_sort.png");
+}
+
+.reversesort {
+    background-image: url("../img/icon_reverseSort.png");
+}
+
+thead  th {
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    padding-right: 20px; 
+ 
+}
