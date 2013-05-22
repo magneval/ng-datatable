@@ -65,6 +65,7 @@ angular.module('components', [])
                         $scope.sortClass[c] = "reversesort";
 
                     }
+                };
             },
             template:
                     '<table border="1" >' +
@@ -75,6 +76,7 @@ angular.module('components', [])
                     '        </tr>' +
                     '    </thead>' +
                     '    <tbody>' +
+                    '       <tr ng-repeat="line in objects">' +
                     '           <td ng-repeat="column in columns" ng-click="edit(line)">' +
                     '{{line[column]}}' +
                     '           </td>' +
@@ -84,7 +86,10 @@ angular.module('components', [])
                     '       </tr>' +
                     '    </tbody>' +
                     '</table>'
+//                ,
+//      replace: true
         }
         ;
     }])
+//})
         ;
