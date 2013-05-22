@@ -37,16 +37,16 @@ angular.module('components', [])
                     $scope.sortClass[c] = "nosort";
                 }
                 $scope.delete = function(line, $index, $event) {
-                }
+                };
                 $scope.edit = function(line) {
                     alert(line);
-                }
+                };
                 $scope.export = function() {
                     alert(datas);
-                }
+                };
                 $scope.getClass = function(column) {
                     return $scope.sortClass[column];
-                }
+                };
                 $scope.sort = function(column) {
                     if (sortColumn === column) {
                         reversed = !reversed;
@@ -88,8 +88,7 @@ angular.module('components', [])
                     '</table>'
 //                ,
 //      replace: true
-        }
-        ;
+        };
     }])
 //})
-        ;
+;
