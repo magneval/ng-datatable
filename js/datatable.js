@@ -1,4 +1,4 @@
-angular.module('components', [])
+angular.module('components', ['ngResource'])
         .value('datas', [
     {
         "a": 1,
@@ -21,21 +21,46 @@ angular.module('components', [])
         "c": '#'
     }
 ])
-        .directive('datatable', ['datas', function(datas) {
+        .factory('Frameworks', function($resource) {
+//    return $resource('http://localhost\\:1234/frameworks/:id', {
+    return $resource('rest/:id.json', {
+        id: '@_id'
+    });
+})
+        .controller('MainCtrl', function($scope, Frameworks) {
+    $scope.Frameworks = Frameworks;
+    $scope.config = {
+        service: Frameworks
+    };
+})
+        .directive('datatable', ['datas', function(datas, config) {
+        getColums = function($scope, objects) {
+            $scope.columns = [];
+            for (var c in objects[0]) {
+                if (c.indexOf('$')) {
+
+                    $scope.columns.push(c);
+                    if (!$scope.sortClass[c]) {
+                        $scope.sortClass[c] = "nosort";
+                    }
+                }
+            }
+
+        }
         return {
             restrict: 'E',
             transclude: true,
             scope: {},
-            controller: function($scope, $element, datas) {
-                var objects = $scope.objects = datas;
+            controller: function($scope, $element, $attrs, datas) {
+                var objects = $scope.objects = $scope.$parent.config.service.query({}, function(result) {
+
+                    getColums($scope, result);
+                });
                 var columns = $scope.columns = [];
                 var sortColumn;
                 var sortClass = $scope.sortClass = [];
                 var reversed = false;
-                for (var c in datas[0]) {
-                    columns.push(c);
-                    $scope.sortClass[c] = "nosort";
-                }
+                getColums($scope, objects);
                 $scope.delete = function(line, $index, $event) {
                 };
                 $scope.edit = function(line) {
